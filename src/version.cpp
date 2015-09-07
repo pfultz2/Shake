@@ -1,7 +1,8 @@
 
 #include "version.h"
-#include "split.h"
+#include "string_utils.h"
 #include <algorithm>
+#include <numeric>
 
 namespace shake {
 

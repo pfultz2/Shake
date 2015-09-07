@@ -26,6 +26,8 @@ struct package
     std::string url;
     std::string md5;
     std::unordered_map<std::string, requirement> deps;
+
+    bool download_to(const std::string& dir);
 };
 
 }

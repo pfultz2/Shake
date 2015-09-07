@@ -1,7 +1,7 @@
 
 #include "requirement.h"
 #include "compare.h"
-#include "split.h"
+#include "string_utils.h"
 
 #define SHAKE_REQUIREMENT_COMPARE_OP(oper, name) \
 if (x == #oper) r.op = std::name<version>(); \
