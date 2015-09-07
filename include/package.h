@@ -27,7 +27,7 @@ struct package
     std::string md5;
     std::unordered_map<std::string, requirement> deps;
 
-    bool download_to(const std::string& dir);
+    void unpack(const std::string &dir, const std::string cache="");
 };
 
 }

@@ -6,6 +6,7 @@
 #include "merge_path.h"
 #include "filesystem.h"
 #include "md5.h"
+#include "extract.h"
 
 #include <iostream>
 
@@ -41,13 +42,13 @@ package package::load(const std::string& path)
     return result;
 }
 
-bool package::download_to(const std::string &dir)
+void package::unpack(const std::string &dir, const std::string cache)
 {
-    auto filename = merge_path(dir, split(this->url, "/").back());
+    std::string download_dir = cache.empty() ? dir : cache;
+    auto filename = merge_path(download_dir, split(this->url, "/").back());
     if (not exists(filename)) download(this->url, filename);
-    std::cout << "Md5: " << md5_file(filename) << "\n";
-    std::cout << "Md5: " << this->md5 << "\n";
-    return md5_file(filename) == this->md5;
+    if (md5_file(filename) != this->md5) throw std::runtime_error("Md5 check failed");
+    extract_to(filename, dir);
 }
 
 }

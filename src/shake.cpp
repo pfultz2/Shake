@@ -14,8 +14,7 @@ int main(int argc, char *argv[])
             shake::package p = shake::package::load(d.path);
             std::cout << p.name << "\t" << p.ver.to_string() << std::endl;
             std::cout << "Download" << std::endl;
-            if (p.download_to(argv[1])) std::cout << "Match md5 sum\n";
-            else std::cout << "Md5 sums don't match\n";
+            p.unpack(argv[1]);
         }
     });
 }
