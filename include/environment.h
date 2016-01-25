@@ -14,13 +14,11 @@
 
 namespace shake {
 
-struct environment
+struct toolchain
 {
-    std::vector<std::string> channels;
-    std::string prefix;
-
     bool cross_compile;
     std::string system_name;
+    std::string target;
 
     std::string c;
     std::string cxx;
@@ -29,7 +27,13 @@ struct environment
     std::string cflags;
     std::string cxxflags;
     std::string ldflags;
+};
 
+struct environment
+{
+    std::vector<std::string> channels;
+    std::map<std::string, toolchain> toolchains;
+    std::string prefix;
 };
 
 }

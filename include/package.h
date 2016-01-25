@@ -13,6 +13,7 @@
 #include <string>
 #include "version.h"
 #include "requirement.h"
+#include "builder.h"
 
 namespace shake {
 
@@ -26,6 +27,7 @@ struct package
     std::string url;
     std::string md5;
     std::unordered_map<std::string, requirement> deps;
+    std::unordered_map<std::string, std::unique_ptr<builder>> builders;
 
     void unpack(const std::string &dir, const std::string cache="");
 };
